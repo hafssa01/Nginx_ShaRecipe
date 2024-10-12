@@ -1,0 +1,16 @@
+#!/bin/bash
+
+REMOTE_HOST="54.160.115.97"
+REMOTE_USER="ubuntu"
+REMOTE_PATH="/home/ubuntu/sharecipe-demo/client/ShaRecipe-vite/dist/"
+LOCAL_PATH="$(pwd)/dist/"
+
+# Run the Vite build
+# npm run build
+
+# SFTP as root
+sftp -i /c/Users/weston/.ssh/id_berry $REMOTE_USER@$REMOTE_HOST <<EOF
+  cd $REMOTE_PATH
+  put -r $LOCAL_PATH*
+  bye
+EOF
